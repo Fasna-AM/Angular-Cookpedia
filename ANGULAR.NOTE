@@ -1,0 +1,110 @@
+
+ANGULAR : ADVANCED FRONDEND TECHNOLOGY
+----------------------------------------
+
+1. open-sorce web app framework developed by Google , used to build dynamic single page application
+2. official website: https://angular.dev/
+3. Angular installation
+    - Install Angular CLI : npm i -g @angular/cli
+    - To check angular version : ng v
+4.Angular Project Creation : ng new project-name , choose style sheet and ssr(server side rendering)
+    -Run an angular project : ng server / ng s inside angular project, to view angular project in browser open http://localhost:4200/
+5.Angular projects files and folder structure:
+    - tsconfig.spec.json, tsconfig.json, tsconfig.app.js file : used to TypeScipt installation and testing
+    - package.json file : npm configuration file
+    - package-lock.json file : version details of packages installed using npm
+    - angular.json file :  Angular project configuration file
+    - node_modules : folder used to hold copies of installed packages using npm in your project
+    - public folder : can access by all files inside the project
+    - src folder : project related contents 
+        - style.css file : used to style globally to all html pages 
+        - main.ts file : used to initially render angular component in userInterface / browser of the project, entry point file which bootstrap/render root componet(AppComponent) into html page of angular app
+        - index.html file : entry point for UI of angular app, where only one component selector will thats the root component of angular app.
+        - app folder : full angular app related contents
+            - app.routes.ts file : used to define routes for each component in angular app
+            - app.config.ts file : used to enable routing / other features in angular app so that all component can use it.
+            - AppComponent is the root component of angular app, a folder which consist of 4 files ( ts file , spec.ts, html, , css file), components are used to display and apply behaviour to the  contents in browser
+                - ts file considered as component file, to create component in angular we have to create class
+                    - Selector : used to display a component html view in browser, used selector as a tag in html page
+                    - Import array : contents in import array are used in component html page
+                    - templateUrl : url of component html page
+                    - styleUrl : url of component style sheet
+
+
+6. Decorators in Angular - Contets along with @ symbols is known as Decorators, used to provide metadata (data inside another data)
+7. Components : used to display contents in browser -
+    - to create Angular component : ng g c component-name -  in project terminal
+8. Data Binding : Data sharing within a component is known as Data Binding
+    - One way Binding : Data sharing from one file to another at a time 
+        - ts (component file) file to html (view) file 
+             - Interpolation : {{ts class property}} inside html page
+             - Property / Attribute Binding : [attribute-name]="property-name"
+        - html file to ts file
+            - Event Binding : (eventName)="function-name()"
+            - Event Binding using $event: (eventName)="function-name($event)" because $event will give you the event occur in DOM
+            - Event Binding using template reference variable : (eventName) ="function-name(template reference variable)" ,set template reference variable '#variablesName' to a tag,  will give you the tag while binding the function
+    - Two way binding : use ngModel Directives
+9. Angular Directives : used to modify behavour of html elements / atributes / properties
+    - 3 types of Directives 
+        - Component Directives : used to display component in html page
+            - ex : component Selector
+        - Attribute Directives : used to change style of a html elements
+            - ex : ngClass : import ngClass in import array of component, used to apply class of style to html elements
+        - Structural Directives : used to add / remove html elements, it should import from angular/common
+            - *ngIf
+            - *ngFor
+            - *ngSwitch
+    - ngModel Directives : used to get values from input tag, import 'FormsModule' in component import array, to use [(ngModel)]= "class property"
+    - ngForm Directives : used to get / control properties of form tag
+10. Control flow statements : similar to structural Directives , no need to import control flow statements to use in component, are used in component html view
+    - @if , @else , @else if 
+    - @for 
+    - @switch 
+11. Pipes : used to convert / transform user data to another format, to use pipe in html use pipe character |
+    - syntax : dataTObeConverted pipe-character(|) pipe-name [:'option'] in html elements
+    - Different Pipes
+        - Built in Pipes : date, currency, lowercase , uppercase etc....
+        - Custom Pipes : use command - ng g p pipe-folder/pipe-name, define logic to convert to another format inside pipe class use transform function
+12. Service : used to share common logic between different component in an angular application
+     create service : ng g s service-folder/service-name
+13. Dependency Injection : used to access properties /functions of a class to dependent class, Dependency Injection can be perform only between component and service or component and predefined class in angular . DI is perform inside constructor argument of a class 
+    - syntax : constructor(access-specifiers variable-name:dependent-class-name){}
+                            access-specifiers : private/public/protect
+14. Asynchronus function handling in TypeScipt : using 'Obesevable' to handle Asynchronus function. Obesevable can resolve multiple Asynchronus function at a time where as promise can only resolve one function at a time. Angular 'RxJS' library is used to resolve Asynchronus function.
+    - To resolve Obesevable to get response angular uses 'subscribe' method , subscribe method argument can be of 2 types, callback function where its argument will give you response. otherwise we can use object, its next key value will give you success response, error key value  will give you server error response
+15. API call : use 'HttpClient' class method will return Obesevable
+    - import 'provideHttpClient' inside app.config.ts file, also provide the same
+16. Interface : used to define custom type of a data in project, command : ng g i folder-name/interface-name
+17. Angular component lifecycle Hooks / Methods : we can use hooks inside compoenent without importing
+    - There are 4 life cycle phases
+                1. Creation phase : constructor method
+                2. Change Detection Phase : 
+                    - ngOnInit : Runs once after Angular has initialized all the component's inputs.
+                    - ngOnChanges : Runs every time the component's inputs have changed.
+                    - ngDoCheck : Runs every time this component is checked for changes.
+                    - ngAfterContentInit : 	Runs once after the component's content has been initialized.
+                    - ngAfterContentChecked : Runs every time this component content has been checked for changes.
+                    - ngAfterViewInit : Runs once after the component's view has been initialized.
+                    - ngAfterViewChecked : Runs every time the component's view has been checked for changes.
+                3. Rendering phase : 
+                    - afterNextRender : Runs once the next time that all components have been rendered to the DOM.
+                    - afterRender : Runs every time all components have been rendered to the DOM.
+                4. Destruction Phase :
+                    - ngOnDestroy : 	Runs once before the component is destroyed.
+18. Setup path / route for component in Angular 
+            - Define path for compoenent inside app.routes.ts file
+            - Add compoenent path in Routes array as object 
+                - syntax : { path:"compoenent-path" , component:component-name }
+            -  use router-outlet selector in root component html page inorder to switch pages according url
+            - 'routerLink' property used to redirect from one html page to another in angular app without refreshing the page
+            -
+19. Parent-Child Component Data shairing
+            - parent to child data shairing : only parent properties shared with child , to access parent data in child , first child should create property and it uses Input Decorators, Input Decorators is used to get data from parent in child
+            - child to parent data shairing : only child events shared with parent, to share events from child it uses @Output Decorators
+20. Form handling in Angular
+            - Template driven forms : first design html part of form , assign form data to compoenent properties, use ngForm , ngModel Directives to manage template driven forms
+            - Model Driven forms : first create model for form inside compoenent class
+                - ex: Reactive Forms : Import 'ReactFormsModule' in compoenent import array, 'FormBuilder' class consist of reactive form building methods. Reactive form consist of
+                    - Form Group : corresponding to form tag
+                    - Form Array : form input to be stored as array
+                    - Form Control : used to link html input tag with form group 
