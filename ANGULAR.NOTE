@@ -80,7 +80,7 @@ ANGULAR : ADVANCED FRONDEND TECHNOLOGY
                 1. Creation phase : constructor method
                 2. Change Detection Phase : 
                     - ngOnInit : Runs once after Angular has initialized all the component's inputs.
-                    - ngOnChanges : Runs every time the component's inputs have changed.
+                    - x : Runs every time the component's inputs have changed.
                     - ngDoCheck : Runs every time this component is checked for changes.
                     - ngAfterContentInit : 	Runs once after the component's content has been initialized.
                     - ngAfterContentChecked : Runs every time this component content has been checked for changes.
@@ -98,6 +98,7 @@ ANGULAR : ADVANCED FRONDEND TECHNOLOGY
             -  use router-outlet selector in root component html page inorder to switch pages according url
             - 'routerLink' property used to redirect from one html page to another in angular app without refreshing the page
             -
+            - to access dynamic value from url : use ActivatedRoute class
 19. Parent-Child Component Data shairing
             - parent to child data shairing : only parent properties shared with child , to access parent data in child , first child should create property and it uses Input Decorators, Input Decorators is used to get data from parent in child
             - child to parent data shairing : only child events shared with parent, to share events from child it uses @Output Decorators
