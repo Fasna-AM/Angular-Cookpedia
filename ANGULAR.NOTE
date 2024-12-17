@@ -98,7 +98,10 @@ ANGULAR : ADVANCED FRONDEND TECHNOLOGY
             -  use router-outlet selector in root component html page inorder to switch pages according url
             - 'routerLink' property used to redirect from one html page to another in angular app without refreshing the page
             -
-            - to access dynamic value from url : use ActivatedRoute class
+            - to access dynamic value from url associated with a component:
+                - use ActivatedRoute class has params property
+                - use withComponentInputBinging(),
+                    -
 19. Parent-Child Component Data shairing
             - parent to child data shairing : only parent properties shared with child , to access parent data in child , first child should create property and it uses Input Decorators, Input Decorators is used to get data from parent in child
             - child to parent data shairing : only child events shared with parent, to share events from child it uses @Output Decorators
@@ -109,3 +112,5 @@ ANGULAR : ADVANCED FRONDEND TECHNOLOGY
                     - Form Group : corresponding to form tag
                     - Form Array : form input to be stored as array
                     - Form Control : used to link html input tag with form group 
+21. Modules : are used to group components, not standalone components they are part of Modules. we can lazy load modules in application.
+    - Lazy 

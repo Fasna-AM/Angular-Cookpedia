@@ -14,17 +14,27 @@ import { ApiService } from '../services/api.service';
 export class HomeComponent {
   
   allRecipes:any = []
+  allFeedbacks:any = []
 
   constructor(private api:ApiService){}
 
   ngOnInit(){
     this.getAllRecipes()
+    this.getAllAprovedFeedbacks()
   }
 
   getAllRecipes(){
     this.api.getAllRecipeAPI().subscribe((res:any)=>{
       this.allRecipes = res.slice(0,6)
       // console.log(this.allRecipes);
+      
+    })
+  }
+
+  getAllAprovedFeedbacks(){
+    this.api.allApprovedFeedbackAPI().subscribe((res:any)=>{
+      this.allFeedbacks = res
+      console.log(this.allFeedbacks);
       
     })
   }

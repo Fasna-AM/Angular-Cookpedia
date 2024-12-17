@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { RecipeModel } from '../admin/model/recipeModel';
 
 @Injectable({
   providedIn: 'root'
@@ -58,5 +59,64 @@ export class ApiService {
   // /recipe/:id/save
  saveRecipeAPI(recipeId:string,reqBody:any){
     return this.http.post(`${this.server_url}/recipe/${recipeId}/save`,reqBody,this.appendToken())
+  }
+
+  // get-save-recipes
+  getUserSaveRecipesAPI(){
+    return this.http.get(`${this.server_url}/get-save-recipes`,this.appendToken())
+  }
+  // save-recipes/:id/remove
+  deleteSaveRecipeAPI(id:string){
+    return this.http.delete(`${this.server_url}/save-recipes/${id}/remove`,this.appendToken())
+  }
+
+  // user-downloads
+  getUserDownloadRecipeAPI(){
+    return this.http.get(`${this.server_url}/user-downloads`,this.appendToken())
+  }
+
+  // user/edit
+  editUserAPI(reqBody:any){
+    return this.http.post(`${this.server_url}/user/edit`,reqBody,this.appendToken())
+  }
+
+  // all-users
+  allUsersAPI(){
+    return this.http.get(`${this.server_url}/all-users`,this.appendToken())
+  }
+
+   // all-download
+   allDownloadAPI(){
+    return this.http.get(`${this.server_url}/all-download`,this.appendToken())
+  }
+
+  // all-feedbacks
+  allFeedbackAPI(){
+    return this.http.get(`${this.server_url}/all-feedbacks`,this.appendToken())
+  }
+
+  // feedbacks/675028acdfcb619eac1124c6/update?status=Approved
+  updateFeedbackAPI(feedbackId:string,status:string){
+    return this.http.get(`${this.server_url}/feedbacks/${feedbackId}/update?status=${status}`,this.appendToken())
+  }
+
+  // all-approved-feedbacks
+  allApprovedFeedbackAPI(){
+    return this.http.get(`${this.server_url}/all-approved-feedbacks`)
+  }
+
+  //add-recipe
+  addRecipeAPI(reqBody:any){
+    return this.http.post(`${this.server_url}/add-recipe`,reqBody,this.appendToken())
+  }
+
+  // /recipe/:id/edit
+  updateRecipeAPI(id:string,reqBody:RecipeModel){
+    return this.http.put(`${this.server_url}/recipe/${id}/edit`,reqBody,this.appendToken())
+  }
+
+  // recipe/:id/remove
+  deleteRecipeAPI(id:string){
+    return this.http.delete(`${this.server_url}/recipe/${id}/remove`,this.appendToken())
   }
 }
