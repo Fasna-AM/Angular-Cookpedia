@@ -21,39 +21,39 @@ export class DashboardComponent {
   requestCount:number = 0
 
   constructor(private router:Router, private api:ApiService){
-    this.chartOptions = {
-      chart:{
-        type:'bar'
-      },
-      title:{
-        text: 'Analysis of Download Recipes Based on Cuisine',
-        align:'left'
-      },
-      xAxis:{
-        type:'category'
-      },
-      yAxis:{
+    if(localStorage.getItem("chart")){
+      let chartData = JSON.parse(localStorage.getItem("chart") || "")
+      this.chartOptions = {
+        chart:{
+          type:'bar'
+        },
         title:{
-          text:'Total Download Recipe Count '
-        }
-      },
-      Legend:{
-        enable:false
-      },
-      credits:{
-        enabled:false
-      },
-      series:[{
-        name : 'Cuisine',
-        colorByPoint:true,
-        type:'bar',
-        data:[
-          {name:"Italian",y:4},
-          {name:"Asian",y:2},
-          {name:"Thai",y:1}
-        ]
-      }]
+          text: 'Analysis of Download Recipes Based on Cuisine',
+          align:'left'
+        },
+        xAxis:{
+          type:'category'
+        },
+        yAxis:{
+          title:{
+            text:'Total Download Recipe Count '
+          }
+        },
+        Legend:{
+          enable:false
+        },
+        credits:{
+          enabled:false
+        },
+        series:[{
+          name : 'Cuisine',
+          colorByPoint:true,
+          type:'bar',
+          data:chartData
+        }]
+      }
     }
+    
   }
 
   ngOnInit(){
@@ -78,6 +78,7 @@ export class DashboardComponent {
   getDownloadCount(){
     this.api.allDownloadAPI().subscribe((res:any)=>{
       this.downloadCount = res.map((item:any)=>item.count).reduce((a:any,b:any)=>a+b)
+      console.log(res);
     })
   }
 
@@ -95,6 +96,7 @@ export class DashboardComponent {
 
   logoutAdmin(){
     sessionStorage.clear()
+    localStorage.clear()
     this.router.navigateByUrl("/")
   }
 }
